@@ -4,9 +4,11 @@ import { reducer as searchData } from './SearchData/slice';
 import { ResultsDataSlice } from './ResultsData/types';
 import { reducer as resultsData } from './ResultsData/slice';
 
-export default configureStore({
+const store = configureStore({
   reducer: combineReducers({ searchData, resultsData }),
 });
+
+export default store;
 
 export interface RootState {
   searchData: SearchDataSlice;
