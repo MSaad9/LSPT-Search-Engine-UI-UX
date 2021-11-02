@@ -32,11 +32,11 @@ export function SearchBar() {
     }, [existingSearch]);
 
     return (
-        <Form>
+        <Form onSubmit={() => handleSearchSubmit(searchText)}>
             <FormGroup>
                 <Input type="text" name="search" id="searchBar" value={searchText} onChange={event => handleQueryChange(event)} />
             </FormGroup>
-            <Button type="button" onClick={() => handleSearchSubmit(searchText)}>Submit</Button>
+            <Button type="submit">Submit</Button>
       </Form>
     );
 }
