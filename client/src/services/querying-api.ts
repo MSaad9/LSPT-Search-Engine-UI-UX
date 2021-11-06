@@ -2,27 +2,39 @@ import axios from 'axios';
 import { QueryResult } from './querying-api.types';
 
 export class QueryingApiService {
-    //should we be passed the url as well?
     //where should we get user id's?
-    public async getQueryResults(query: string, url: string) {
+    public async getQueryResults(query: string) {
         
-        //url, user id, query string, query id
-        
-        var postParamters = {
+        var getParamters = {
+            'q':query,
+            'q_site': '',
+            'q_lang':'en',
+            'q_exclude': '',
+            'q_include':'',
+            'q_id':'',
+            'offset':'',
+            'page_size':'',
             'uid':'',
-            'q': query,
-            'qid':'',
-            'url': url
+            'accept':'application/json',
+            'accept_language':'en',
+            'user_agent':''
         };
 
+        //What are the X-RateLimit headers for?
         const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            method: 'GET',
+            headers: {
+                'X-RateLimit-Limit': 0,
+                'X-RateLimit-Remaining': 0,
+                'X-RateLimit-Reset': 0,
+                'Content-Language': getParamters['q_lang'],
+                'Content-Type': getParamters['accept']
+            },
             
         };
 
-        fetch(postParamters['url'], requestOptions)
-            .then(response => response.json())
+        //how should we fetch? /search is the extension of what url?
+        //fetch()
 
         
         return;

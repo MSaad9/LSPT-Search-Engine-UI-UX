@@ -21,7 +21,7 @@ export function SearchBar() {
         let queryString: string = encodeURI(query);
         history.push('/search?q=' + queryString);
 
-        queryingApi.getQueryResults(queryString, '');
+        queryingApi.getQueryResults(queryString);
 
         console.log(query);
     }
