@@ -4,7 +4,10 @@ import { ResultEntry, ResultMetrics } from '../../services/querying-api.types';
 
 export const initialState: ResultsDataSlice = {
     results: [],
-    metrics: {}
+    metrics: {
+        url: '',
+        title: ''
+    }
 };
 
 const resultsDataSlice = createSlice({

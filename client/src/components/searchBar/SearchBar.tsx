@@ -5,12 +5,14 @@ import { actions as searchActions } from '../../store/SearchData/slice';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import './SearchBar.css';
 import { selectSearchData } from '../../store/SearchData/selectors';
+import { queryingApi } from '../../services/querying-api';
 
 export function SearchBar() {
     const [searchText, setSearchText] = useState<string>("");
     const existingSearch = useSelector(selectSearchData);
     const dispatch = useDispatch();
     const history = useHistory();
+   
 
     // Handle search query submission using Querying component API
     // Perform error checking before sending query
@@ -18,9 +20,13 @@ export function SearchBar() {
         dispatch(searchActions.setSearchQuery(query));
         let queryString: string = encodeURI(query);
         history.push('/search?q=' + queryString);
+
+        queryingApi.getQueryResults(queryString, '');
+
         console.log(query);
     }
 
+   
     const handleQueryChange = (event: any) => {
         setSearchText(event.target.value);
     }
