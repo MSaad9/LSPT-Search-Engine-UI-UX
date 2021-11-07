@@ -13,7 +13,7 @@ export interface ResultEntry {
     url: string;
     title: string;
     snippet: string;
-    last_updated: Date;
+    last_updated: string;
 }
 
 export interface ResultMetrics {
