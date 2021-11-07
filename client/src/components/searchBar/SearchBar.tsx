@@ -16,11 +16,15 @@ export function SearchBar() {
     // Handle search query submission using Querying component API
     const handleSearchSubmit = (e: React.FormEvent, query: string) => {
         e.preventDefault();
+        
+        // If the search query changed, reset the page offset
+        if(existingSearch.searchQuery !== query)
+            dispatch(searchActions.setPageOffset(0));
         dispatch(searchActions.setSearchQuery(query));
         let queryString: string = encodeURI(query);
         history.push('/search?q=' + queryString);
 
-        console.log(query);
+        console.log("Searching results for: " + query);
     }
 
     const handleQueryChange = (event: any) => {

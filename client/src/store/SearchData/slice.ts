@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SearchDataSlice } from './types';
 
 export const initialState: SearchDataSlice = {
-    searchQuery: ""
+    searchQuery: "",
+    pageOffset: 0
 };
 
 const searchDataSlice = createSlice({
@@ -11,6 +12,9 @@ const searchDataSlice = createSlice({
     reducers: {
         setSearchQuery(state: SearchDataSlice, action: PayloadAction<string>){
             state.searchQuery = action.payload;
+        },
+        setPageOffset(state: SearchDataSlice, action: PayloadAction<number>){
+            state.pageOffset = action.payload;
         }
     },
 });

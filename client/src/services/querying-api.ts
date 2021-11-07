@@ -53,10 +53,11 @@ export class QueryingApiService {
             "Sunt in culpa qui officia deserunt mollit anim id est laborum."
         ];
 
-        for(let i = 0; i < numResults; i++) {
+        // Assuming 20 results to display per page
+        for(let i = 0; i < 20; i++) {
             mockResults.push({
                 url: "#",
-                title: "Search Result " + i.toString(),
+                title: "Search Result " + (i + 1 + (page_offset*20)).toString(),
                 snippet: rndTxt[Math.floor(Math.random() * rndTxt.length)],
                 last_updated: new Date().toString()
             });
