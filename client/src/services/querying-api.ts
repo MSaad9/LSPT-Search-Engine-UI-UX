@@ -2,42 +2,42 @@ import axios from 'axios';
 import { QueryResult } from './querying-api.types';
 
 export class QueryingApiService {
-    //where should we get user id's?
+    // This base address will change depending on how the querying team
+    // sets up their API
+    private queryingAddress = "http://localhost/";
+
     public async getQueryResults(query: string) {
-        
-        var getParamters = {
-            'q':query,
-            'q_site': '',
-            'q_lang':'en',
-            'q_exclude': '',
-            'q_include':'',
-            'q_id':'',
-            'offset':'',
-            'page_size':'',
-            'uid':'',
-            'accept':'application/json',
-            'accept_language':'en',
-            'user_agent':''
-        };
+        let url = this.queryingAddress + "search"
 
-        //What are the X-RateLimit headers for?
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'X-RateLimit-Limit': 0,
-                'X-RateLimit-Remaining': 0,
-                'X-RateLimit-Reset': 0,
-                'Content-Language': getParamters['q_lang'],
-                'Content-Type': getParamters['accept']
+        let config = {
+            params: {
+                q: query, 
+                offset: 0, 
+                page_size: 20
             },
-            
+            headers: {
+              "Accept": "application/json",
+              "User-Agent": "lsptteamnuiux"
+            }
+          }
+
+
+        let res = await axios.get<QueryResult>(url, config);
+        let queryResponse: QueryResult = {
+            error: [],
+            metrics: {
+                compute_time: 0,
+                total_results: 0
+            },
+            offset: 0,
+            query_display: "",
+            ac_suggest: [],
+            qid: 0,
+            results: []  
         };
 
-        //how should we fetch? /search is the extension of what url?
-        //fetch()
-
-        
-        return;
+        queryResponse = res.data;
+        return queryResponse;
     }
 }
 

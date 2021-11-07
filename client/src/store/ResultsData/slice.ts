@@ -5,8 +5,8 @@ import { ResultEntry, ResultMetrics } from '../../services/querying-api.types';
 export const initialState: ResultsDataSlice = {
     results: [],
     metrics: {
-        url: '',
-        title: ''
+        compute_time: 0,
+        total_results: 0
     }
 };
 
