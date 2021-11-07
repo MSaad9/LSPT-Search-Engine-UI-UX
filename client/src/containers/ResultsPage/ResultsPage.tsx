@@ -27,7 +27,7 @@ export const ResultsPage = () => {
 
     useEffect(() => {
         const getResultsData = async () => {
-            return (queryingApi.getQueryResults(searchData.searchQuery));
+            return (queryingApi.getQueryResults(searchData.searchQuery, 0));
         }
 
         getResultsData().then(value => {
@@ -40,8 +40,8 @@ export const ResultsPage = () => {
 
     return (
         <Container>
+            
             <SearchBar/>
-            <p>Results Page</p>
             <p>About {queryResult.metrics.total_results} results</p>
             <p>({queryResult.metrics.compute_time} seconds)</p>
 

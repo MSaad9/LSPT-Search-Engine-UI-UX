@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as searchActions } from '../../store/SearchData/slice';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
-import './SearchBar.css';
 import { selectSearchData } from '../../store/SearchData/selectors';
-import { queryingApi } from '../../services/querying-api';
+import './SearchBar.css';
 
 export function SearchBar() {
     const [searchText, setSearchText] = useState<string>("");
@@ -15,30 +14,27 @@ export function SearchBar() {
    
 
     // Handle search query submission using Querying component API
-    // Perform error checking before sending query
-    const handleSearchSubmit = (query: string) => {
+    const handleSearchSubmit = (e: React.FormEvent, query: string) => {
+        e.preventDefault();
         dispatch(searchActions.setSearchQuery(query));
         let queryString: string = encodeURI(query);
         history.push('/search?q=' + queryString);
 
-        queryingApi.getQueryResults(queryString);
-
         console.log(query);
     }
 
-   
     const handleQueryChange = (event: any) => {
         setSearchText(event.target.value);
     }
 
-    // If previous search alreaady exists, display it in the search bar
+    // If previous search already exists, display it in the search bar
     useEffect(() => {
         if(existingSearch.searchQuery !== "")
             setSearchText(existingSearch.searchQuery);
-    }, [existingSearch]);
+    }, [existingSearch.searchQuery]);
 
     return (
-        <Form onSubmit={() => handleSearchSubmit(searchText)}>
+        <Form onSubmit={(e) => handleSearchSubmit(e, searchText)}>
             <FormGroup>
                 <Input type="text" name="search" id="searchBar" value={searchText} onChange={event => handleQueryChange(event)} />
             </FormGroup>
