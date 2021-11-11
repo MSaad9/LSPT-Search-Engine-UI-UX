@@ -1,3 +1,8 @@
-.jumbotron {
+.search-page {
     text-align: center;
+    padding-top: 10%;
+}
+
+.search-page img {
+    margin-bottom: 30px;
 }

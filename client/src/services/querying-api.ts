@@ -56,7 +56,7 @@ export class QueryingApiService {
         // Assuming 20 results to display per page
         for(let i = 0; i < 20; i++) {
             mockResults.push({
-                url: "#",
+                url: "http://www.google.com",
                 title: "Search Result " + (i + 1 + (page_offset*20)).toString(),
                 snippet: rndTxt[Math.floor(Math.random() * rndTxt.length)],
                 last_updated: new Date().toString()

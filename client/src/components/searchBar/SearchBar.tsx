@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as searchActions } from '../../store/SearchData/slice';
-import { Form, FormGroup, Input, Button } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
 import { selectSearchData } from '../../store/SearchData/selectors';
 import './SearchBar.css';
 
@@ -11,7 +11,7 @@ export function SearchBar() {
     const existingSearch = useSelector(selectSearchData);
     const dispatch = useDispatch();
     const history = useHistory();
-   
+
 
     // Handle search query submission using Querying component API
     const handleSearchSubmit = (e: React.FormEvent, query: string) => {
@@ -39,10 +39,18 @@ export function SearchBar() {
 
     return (
         <Form onSubmit={(e) => handleSearchSubmit(e, searchText)}>
-            <FormGroup>
-                <Input type="text" name="search" id="searchBar" value={searchText} onChange={event => handleQueryChange(event)} />
-            </FormGroup>
-            <Button type="submit">Submit</Button>
-      </Form>
+            <Container>
+                <Row>
+                    <Col className="search-bar-col" md={10}>
+                        <FormGroup>
+                            <Input type="text" name="search" id="searchBar" value={searchText} onChange={event => handleQueryChange(event)} />
+                        </FormGroup>
+                    </Col>
+                    <Col className="search-bar-col" md={2}>
+                        <Button type="submit">Submit</Button>                   
+                    </Col>
+                </Row>
+            </Container>
+        </Form>
     );
 }

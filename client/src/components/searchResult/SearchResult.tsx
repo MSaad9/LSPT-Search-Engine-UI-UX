@@ -9,6 +9,7 @@ interface IProps {
 export function SearchResult({result}: IProps) {
     return (
         <div>
+            <p>{result.url}</p>
             <a href={result.url} target="_blank" rel="noreferrer">
                 <h3>{result.title}</h3>
             </a>

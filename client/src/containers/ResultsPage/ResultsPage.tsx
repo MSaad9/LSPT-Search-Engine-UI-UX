@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { QueryResult } from '../../services/querying-api.types';
 import { queryingApi } from '../../services/querying-api';
+import { NavBar } from '../../components/navBar/NavBar';
 import { SearchBar } from '../../components/searchBar/SearchBar';
 import { Container, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { selectSearchData } from '../../store/SearchData/selectors';
@@ -58,35 +59,37 @@ export const ResultsPage = () => {
     console.log("Total result pages: " + totalPages);
 
     return (
-        <Container>
-            
-            <SearchBar/>
-            <p>About {queryResult.metrics.total_results} results</p>
-            <p>({queryResult.metrics.compute_time} seconds)</p>
+        <div>
+            <NavBar page={"Results"}/>
+            <Container>
+                <SearchBar/>
+                <p>About {queryResult.metrics.total_results} results</p>
+                <p>({queryResult.metrics.compute_time} seconds)</p>
 
-            {queryResult.results.length === 0 ? <div>No results found!</div> : <></>}
-            {queryResult.results.map((res, i) => {
-                return <SearchResult key={i} result={res} />
-            })}
-
-            <Pagination>
-                <PaginationItem>
-                    {searchData.pageOffset > 0 ? <PaginationLink previous href='#' onClick={() => handlePagePrev()}/> : <></>}
-                </PaginationItem>
-
-                {Array.from(Array(totalPages).keys()).map((i) => {
-                    return (
-                        <PaginationItem active={i === searchData.pageOffset} key={i} onClick={() => handlePageChange(i)}>
-                            <PaginationLink href='#'>{i + 1}</PaginationLink>
-                        </PaginationItem>
-                    );
+                {queryResult.results.length === 0 ? <div>No results found!</div> : <></>}
+                {queryResult.results.map((res, i) => {
+                    return <SearchResult key={i} result={res} />
                 })}
 
-                <PaginationItem>
-                    {(searchData.pageOffset+1) * resultsPerPage < queryResult.metrics.total_results ? <PaginationLink next href='#' onClick={() => handlePageNext()}/> : <></>}
-                </PaginationItem>
-            </Pagination>
+                <Pagination>
+                    <PaginationItem>
+                        {searchData.pageOffset > 0 ? <PaginationLink previous href='#' onClick={() => handlePagePrev()}/> : <></>}
+                    </PaginationItem>
 
-        </Container>
+                    {Array.from(Array(totalPages).keys()).map((i) => {
+                        return (
+                            <PaginationItem active={i === searchData.pageOffset} key={i} onClick={() => handlePageChange(i)}>
+                                <PaginationLink href='#'>{i + 1}</PaginationLink>
+                            </PaginationItem>
+                        );
+                    })}
+
+                    <PaginationItem>
+                        {(searchData.pageOffset+1) * resultsPerPage < queryResult.metrics.total_results ? <PaginationLink next href='#' onClick={() => handlePageNext()}/> : <></>}
+                    </PaginationItem>
+                </Pagination>
+
+            </Container>
+        </div>
       );
 }
