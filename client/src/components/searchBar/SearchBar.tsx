@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as searchActions } from '../../store/SearchData/slice';
-import { Container, Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
+import { Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
 import { selectSearchData } from '../../store/SearchData/selectors';
 import './SearchBar.css';
 
@@ -39,18 +39,16 @@ export function SearchBar() {
 
     return (
         <Form onSubmit={(e) => handleSearchSubmit(e, searchText)}>
-            <Container>
-                <Row>
-                    <Col className="search-bar-col" md={10}>
-                        <FormGroup>
-                            <Input type="text" name="search" id="searchBar" value={searchText} onChange={event => handleQueryChange(event)} />
-                        </FormGroup>
-                    </Col>
-                    <Col className="search-bar-col" md={2}>
-                        <Button type="submit">Submit</Button>                   
-                    </Col>
-                </Row>
-            </Container>
+            <Row className="search-bar-row">
+                <Col className="search-bar-col" md={10}>
+                    <FormGroup>
+                        <Input type="text" name="search" id="searchBar" value={searchText} onChange={event => handleQueryChange(event)} />
+                    </FormGroup>
+                </Col>
+                <Col className="search-bar-col" md={2}>
+                    <Button type="submit">Submit</Button>                   
+                </Col>
+            </Row>
         </Form>
     );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, NavbarBrand, NavbarText } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../assets/300x100.png';
+import logo from '../../assets/logo.png';
 import './NavBar.css';
 
 interface IProps {

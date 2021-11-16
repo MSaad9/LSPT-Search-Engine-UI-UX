@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import { NavBar } from '../../components/navBar/NavBar';
 import { SearchBar } from '../../components/searchBar/SearchBar';
-import logo from '../../assets/300x100.png';
+import logo from '../../assets/logo.png';
 import './SearchPage.css';
 
 export const SearchPage = () => {

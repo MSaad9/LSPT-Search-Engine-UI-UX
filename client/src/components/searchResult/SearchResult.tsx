@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 import { ResultEntry } from '../../services/querying-api.types';
 import './SearchResult.css';
 
@@ -8,13 +9,13 @@ interface IProps {
 
 export function SearchResult({result}: IProps) {
     return (
-        <div>
+        <Container className="search-result-item">
             <p>{result.url}</p>
             <a href={result.url} target="_blank" rel="noreferrer">
-                <h3>{result.title}</h3>
+                <h4>{result.title}</h4>
             </a>
-            <h4>{result.snippet}</h4>
-            <p>{result.last_updated}</p>
-        </div>
+            <h5>{result.snippet}</h5>
+            {/* <p>{result.last_updated}</p> */}
+        </Container>
     );
 }

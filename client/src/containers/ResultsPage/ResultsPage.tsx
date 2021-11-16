@@ -63,8 +63,8 @@ export const ResultsPage = () => {
             <NavBar page={"Results"}/>
             <Container>
                 <SearchBar/>
-                <p>About {queryResult.metrics.total_results} results</p>
-                <p>({queryResult.metrics.compute_time} seconds)</p>
+                <p>About {queryResult.metrics.total_results} results ({queryResult.metrics.compute_time} seconds)</p>
+                <p>Showing results for <b>{searchData.searchQuery}</b></p>
 
                 {queryResult.results.length === 0 ? <div>No results found!</div> : <></>}
                 {queryResult.results.map((res, i) => {
