@@ -4,6 +4,7 @@ import { QueryResult } from '../../services/querying-api.types';
 import { queryingApi } from '../../services/querying-api';
 import { NavBar } from '../../components/navBar/NavBar';
 import { SearchBar } from '../../components/searchBar/SearchBar';
+import { FilterModal } from '../../components/filterModal/FilterModal'; 
 import { Container, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { selectSearchData } from '../../store/SearchData/selectors';
 import { actions as resultsDataActions } from "../../store/ResultsData/slice";
@@ -63,7 +64,10 @@ export const ResultsPage = () => {
             <NavBar page={"Results"}/>
             <Container>
                 <SearchBar/>
-                <p>About {queryResult.metrics.total_results} results ({queryResult.metrics.compute_time} seconds)</p>
+                <span className="results-metrics">
+                    <p className="query-metrics">About {queryResult.metrics.total_results} results ({queryResult.metrics.compute_time} seconds)</p>
+                    <FilterModal/>
+                </span>
                 <p>Showing results for <b>{searchData.searchQuery}</b></p>
 
                 {queryResult.results.length === 0 ? <div>No results found!</div> : <></>}

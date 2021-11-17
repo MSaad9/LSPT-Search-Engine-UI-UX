@@ -1,0 +1,14 @@
+.results-metrics {
+    padding-top: 20px;
+    display: inline-block;
+    align-items: center;
+}
+
+.query-metrics {
+    display: inline;
+    padding-right: 10px;
+}
+
+.filter-modal {
+    display: inline;
+}
