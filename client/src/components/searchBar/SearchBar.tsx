@@ -7,10 +7,10 @@ import { selectSearchData } from '../../store/SearchData/selectors';
 import './SearchBar.css';
 
 export function SearchBar() {
-    const [searchText, setSearchText] = useState<string>("");
-    const existingSearch = useSelector(selectSearchData);
-    const dispatch = useDispatch();
-    const history = useHistory();
+    let [searchText, setSearchText] = useState<string>("");
+    let existingSearch = useSelector(selectSearchData);
+    let dispatch = useDispatch();
+    let history = useHistory();
 
 
     // Handle search query submission using Querying component API
