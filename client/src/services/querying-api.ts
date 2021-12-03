@@ -53,10 +53,17 @@ export class QueryingApiService {
             "Sunt in culpa qui officia deserunt mollit anim id est laborum."
         ];
 
+        let rndSites: string[] = [
+            "https://www.amazon.com/", 
+            "https://github.com/",
+             "https://www.reddit.com/", 
+             "https://www.wikipedia.org/"
+        ];
+
         // Assuming 20 results to display per page
         for(let i = 0; i < 20; i++) {
             mockResults.push({
-                url: "http://www.google.com",
+                url: rndSites[Math.floor(Math.random() * rndSites.length)],
                 title: "Search Result " + (i + 1 + (page_offset*20)).toString(),
                 snippet: rndTxt[Math.floor(Math.random() * rndTxt.length)],
                 last_updated: new Date().toString()

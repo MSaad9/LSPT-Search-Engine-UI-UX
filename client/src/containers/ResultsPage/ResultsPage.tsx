@@ -12,6 +12,22 @@ import { actions as searchDataActions } from "../../store/SearchData/slice";
 import { SearchResult } from '../../components/searchResult/SearchResult';
 import './ResultsPage.css';
 
+// Assumes the provided url contains a protocol prefix
+// and a domain suffix
+export function extractHostname(url: string): string {
+    let { hostname } = new URL(url);
+    let hostStr = hostname.toString();
+    let firstP = hostStr.indexOf('.', 0);
+    let lastP = hostStr.lastIndexOf('.');
+    if(firstP === lastP) {
+        // Only parse out .com
+        return hostStr.substring(0, firstP);
+    } else {
+        // Parse out www. and .com
+        return hostStr.substring(firstP + 1, lastP);
+    }
+}
+
 export const ResultsPage = () => {
     const searchData = useSelector(selectSearchData);
     let resultsPerPage = 20;
@@ -72,7 +88,12 @@ export const ResultsPage = () => {
 
                 {queryResult.results.length === 0 ? <div>No results found!</div> : <></>}
                 {queryResult.results.map((res, i) => {
-                    return <SearchResult key={i} result={res} />
+                    let hostname = extractHostname(res.url);
+                    console.log(hostname);
+                    if(searchData.siteFilters.includes(hostname))
+                        return <SearchResult key={i} result={res} />
+                    else
+                        return <></>
                 })}
 
                 <Pagination>
